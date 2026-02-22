@@ -6,6 +6,7 @@
   <title>Quokka Networks | FiveM Roleplay</title>
   <link rel="icon" type="image/png" href="1080.png"/>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet"/>
+
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -113,19 +114,34 @@
       overflow: hidden;
     }
 
+    /* HERO BACKGROUND CAROUSEL */
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: url('image.png') center/cover no-repeat;
-      filter: brightness(0.28) saturate(1.4);
       z-index: 0;
-      transform: scale(1.04);
-      animation: slowZoom 20s ease-in-out infinite alternate;
+      overflow: hidden;
+      background: #000;
     }
 
-    @keyframes slowZoom {
-      from { transform: scale(1.04); }
-      to   { transform: scale(1.12); }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+
+      /* your old look */
+      filter: brightness(0.28) saturate(1.4);
+
+      opacity: 0;
+      transform: scale(1.10);
+      transition: opacity 900ms ease-in-out;
+      will-change: opacity, transform;
+    }
+
+    .hero-slide.is-active {
+      opacity: 1;
+      transform: scale(1.06);
     }
 
     /* scanline overlay */
@@ -281,159 +297,6 @@
       50% { transform: translateX(-50%) translateY(8px); }
     }
 
-    /* ── FEATURES SECTION ── */
-    .features {
-      position: relative;
-      padding: 100px 20px;
-      background: var(--mid);
-      overflow: hidden;
-    }
-
-    .features::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--neon-red), var(--neon-blue), transparent);
-    }
-
-    .features-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--neon-blue);
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      line-height: 1;
-      margin-bottom: 60px;
-    }
-
-    .section-title span { color: var(--neon-red); }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-    }
-
-    .card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 8px;
-      padding: 36px 28px;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--accent, var(--neon-red));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s;
-    }
-
-    .card:hover::before { transform: scaleX(1); }
-    .card:hover {
-      border-color: rgba(255,255,255,0.15);
-      transform: translateY(-4px);
-    }
-
-    .card-icon {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
-
-    .card h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.5rem;
-      letter-spacing: 0.05em;
-      margin-bottom: 12px;
-    }
-
-    .card p {
-      color: rgba(255,255,255,0.5);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    /* ── JOIN SECTION ── */
-    .join {
-      padding: 120px 20px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .join-bg {
-      position: absolute;
-      inset: 0;
-      background: url('image.png') center/cover no-repeat;
-      filter: brightness(0.12) saturate(0.8);
-      z-index: 0;
-    }
-
-    .join-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, var(--dark) 0%, transparent 30%, transparent 70%, var(--dark) 100%);
-      z-index: 1;
-    }
-
-    .join-content {
-      position: relative;
-      z-index: 2;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .join-content .section-title { margin-bottom: 20px; }
-
-    .join-content p {
-      color: rgba(255,255,255,0.55);
-      font-size: 1.1rem;
-      margin-bottom: 50px;
-      line-height: 1.7;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      padding: 40px 20px;
-      text-align: center;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-
-    footer img { width: 80px; opacity: 0.6; margin-bottom: 16px; }
-
-    footer p {
-      color: rgba(255,255,255,0.25);
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-    }
-
-    /* ── NEON GLOW DIVIDER ── */
-    .divider {
-      width: 80px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--neon-red), var(--neon-blue));
-      margin: 0 auto 60px;
-      border-radius: 2px;
-    }
-
     /* ── STAT STRIP ── */
     .stats {
       background: rgba(0,0,0,0.5);
@@ -465,22 +328,45 @@
       color: rgba(255,255,255,0.35);
       margin-top: 4px;
     }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    footer img { width: 80px; opacity: 0.6; margin-bottom: 16px; }
+
+    footer p {
+      color: rgba(255,255,255,0.25);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+    }
   </style>
 </head>
-<body>
 
+<body>
   <!-- HEADER -->
   <header>
     <a href="/" class="header-logo">
       <img src="1080.png" alt="Quokka Networks"/>
     </a>
     <nav>
-      <a class="nav-btn nav-discord" href="https://discord.gg/Cm9jkAq3xm" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+      <a class="nav-btn nav-discord" href="https://discord.gg/Cm9jkAq3xm" target="_blank" rel="noopener" aria-label="Join our Discord">
+        <!-- Discord icon (fixed) -->
+        <svg viewBox="0 0 245 240" fill="currentColor" aria-hidden="true">
+          <path d="M104.4 104.7c-5.7 0-10.2 5-10.2 11.1 0 6.1 4.6 11.1 10.2 11.1 5.7 0 10.2-5 10.2-11.1.1-6.1-4.5-11.1-10.2-11.1zm36.2 0c-5.7 0-10.2 5-10.2 11.1 0 6.1 4.6 11.1 10.2 11.1 5.7 0 10.2-5 10.2-11.1 0-6.1-4.5-11.1-10.2-11.1z"/>
+          <path d="M189.5 20h-134C24.6 20 0 44.6 0 75.5v89c0 30.9 24.6 55.5 55.5 55.5h113.3l-5.3-18.5 12.8 11.9 12.1 11.1L245 240V75.5C245 44.6 220.4 20 189.5 20zm-39.7 135s-3.7-4.4-6.8-8.3c13.5-3.8 18.6-12.2 18.6-12.2-4.2 2.8-8.2 4.8-11.8 6.2-5.1 2.1-10 3.5-14.8 4.3-9.8 1.8-18.8 1.3-26.6-.1-5.9-1.1-11-2.6-15.3-4.3-2.4-.9-5-2-7.6-3.4-.3-.2-.6-.3-.9-.5-.2-.1-.3-.2-.5-.3-2.2-1.2-3.4-2.1-3.4-2.1s4.9 8.2 17.9 12.2c-3.1 3.9-6.9 8.6-6.9 8.6-22.8-.7-31.5-15.7-31.5-15.7 0-33.2 14.8-60.1 14.8-60.1 14.8-11.1 28.9-10.8 28.9-10.8l1 1.2c-18.5 5.3-27 13.4-27 13.4s2.3-1.3 6.1-3.1c11-4.8 19.7-6.1 23.3-6.4.6-.1 1.1-.2 1.7-.2 6.1-.8 13-1 20.2-.2 9.5 1.1 19.7 3.9 30 9.9 0 0-8.1-7.7-25.6-13l1.4-1.6s14.1-.3 28.9 10.8c0 0 14.8 26.9 14.8 60.1 0 0-8.8 15-31.6 15.7z"/>
+        </svg>
         Discord
       </a>
+
       <a class="nav-btn nav-cad" href="https://cad.quokkanetworks.net" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <path d="M3 9h18M9 21V9"/>
+        </svg>
         CAD
       </a>
     </nav>
@@ -488,19 +374,26 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-bg"></div>
+    <!-- Carousel container -->
+    <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
+
     <div class="hero-vignette"></div>
     <div class="hero-bottom-fade"></div>
 
     <div class="hero-content">
       <img class="hero-logo" src="1080.png" alt="Quokka Networks Logo"/>
       <p class="hero-tagline">Australian <span>FiveM</span> Roleplay Community</p>
+
       <div class="btn-group">
-        <a class="btn btn-discord" href="https://discord.gg/Cm9jkAq3xm" target="_blank" rel="noopener">
-          <!-- Discord icon -->
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+        <a class="btn btn-discord" href="https://discord.gg/Cm9jkAq3xm" target="_blank" rel="noopener" aria-label="Join our Discord">
+          <!-- Discord icon (fixed) -->
+          <svg viewBox="0 0 245 240" fill="currentColor" aria-hidden="true">
+            <path d="M104.4 104.7c-5.7 0-10.2 5-10.2 11.1 0 6.1 4.6 11.1 10.2 11.1 5.7 0 10.2-5 10.2-11.1.1-6.1-4.5-11.1-10.2-11.1zm36.2 0c-5.7 0-10.2 5-10.2 11.1 0 6.1 4.6 11.1 10.2 11.1 5.7 0 10.2-5 10.2-11.1 0-6.1-4.5-11.1-10.2-11.1z"/>
+            <path d="M189.5 20h-134C24.6 20 0 44.6 0 75.5v89c0 30.9 24.6 55.5 55.5 55.5h113.3l-5.3-18.5 12.8 11.9 12.1 11.1L245 240V75.5C245 44.6 220.4 20 189.5 20zm-39.7 135s-3.7-4.4-6.8-8.3c13.5-3.8 18.6-12.2 18.6-12.2-4.2 2.8-8.2 4.8-11.8 6.2-5.1 2.1-10 3.5-14.8 4.3-9.8 1.8-18.8 1.3-26.6-.1-5.9-1.1-11-2.6-15.3-4.3-2.4-.9-5-2-7.6-3.4-.3-.2-.6-.3-.9-.5-.2-.1-.3-.2-.5-.3-2.2-1.2-3.4-2.1-3.4-2.1s4.9 8.2 17.9 12.2c-3.1 3.9-6.9 8.6-6.9 8.6-22.8-.7-31.5-15.7-31.5-15.7 0-33.2 14.8-60.1 14.8-60.1 14.8-11.1 28.9-10.8 28.9-10.8l1 1.2c-18.5 5.3-27 13.4-27 13.4s2.3-1.3 6.1-3.1c11-4.8 19.7-6.1 23.3-6.4.6-.1 1.1-.2 1.7-.2 6.1-.8 13-1 20.2-.2 9.5 1.1 19.7 3.9 30 9.9 0 0-8.1-7.7-25.6-13l1.4-1.6s14.1-.3 28.9 10.8c0 0 14.8 26.9 14.8 60.1 0 0-8.8 15-31.6 15.7z"/>
+          </svg>
           Join Discord
         </a>
+
         <a class="btn btn-fivem" href="https://cfx.re/join/89b7o5" target="_blank" rel="noopener">
           <img src="fivem-icon.png" alt="FiveM" style="width:24px;height:24px;object-fit:contain;border-radius:50%;"/>
           Play Now
@@ -510,7 +403,9 @@
 
     <div class="scroll-hint">
       <span>Scroll</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
     </div>
   </section>
 
@@ -538,8 +433,116 @@
   <footer>
     <img src="1080.png" alt="Quokka Networks"/>
     <p>© 2026 Quokka Networks · All Rights Reserved</p>
-    <p style="margin-top:10px; color: rgba(255,255,255,0.18); font-size:0.75rem; letter-spacing:0.08em;">Made with <span style="color:#e8001d;">♥</span> by Mocha</p>
+    <p style="margin-top:10px; color: rgba(255,255,255,0.18); font-size:0.75rem; letter-spacing:0.08em;">
+      Made with <span style="color:#e8001d;">♥</span> by Mocha
+    </p>
   </footer>
 
+  <script>
+    /**
+     * HERO CAROUSEL (images folder)
+     *
+     * IMPORTANT LIMITATION:
+     * Browsers can't "list" files in /images by themselves.
+     * So to "add onto it whenever", the clean way is:
+     *   - add images into /images
+     *   - update /images/manifest.json (no code changes)
+     *
+     * manifest.json format:
+     * {
+     *   "images": ["one.png", "two.jpg", "three.webp"]
+     * }
+     *
+     * If manifest.json is missing, we fall back to a default list.
+     */
+
+    const CAROUSEL = {
+      folder: "images",
+      manifest: "images/manifest.json",
+      fallbackImages: ["image.png"], // used if manifest isn't present
+      intervalMs: 6000,
+      crossfadeMs: 900
+    };
+
+    const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function joinPath(folder, file) {
+      const f = folder.replace(/\/+$/, "");
+      const s = String(file).replace(/^\/+/, "");
+      return `${f}/${s}`;
+    }
+
+    async function loadManifestImages() {
+      try {
+        const res = await fetch(CAROUSEL.manifest, { cache: "no-cache" });
+        if (!res.ok) throw new Error("manifest not found");
+        const data = await res.json();
+
+        if (!data || !Array.isArray(data.images) || data.images.length === 0) {
+          throw new Error("manifest invalid");
+        }
+        return data.images.map(name => joinPath(CAROUSEL.folder, name));
+      } catch (_) {
+        return CAROUSEL.fallbackImages.map(name => joinPath(CAROUSEL.folder, name));
+      }
+    }
+
+    function createSlides(container, urls) {
+      container.innerHTML = "";
+
+      // Create 2 slides only; we swap backgrounds to keep DOM light
+      const slideA = document.createElement("div");
+      const slideB = document.createElement("div");
+      slideA.className = "hero-slide";
+      slideB.className = "hero-slide";
+      container.appendChild(slideA);
+      container.appendChild(slideB);
+
+      return [slideA, slideB];
+    }
+
+    (async function initHeroCarousel() {
+      const container = document.getElementById("heroBg");
+      if (!container) return;
+
+      const urls = await loadManifestImages();
+      if (!urls || urls.length === 0) return;
+
+      // If reduced motion, just show the first image and stop.
+      if (prefersReducedMotion) {
+        container.style.background = `url('${urls[0]}') center/cover no-repeat`;
+        return;
+      }
+
+      const [slideA, slideB] = createSlides(container, urls);
+
+      let index = 0;
+      let active = slideA;
+      let idle = slideB;
+
+      // Set initial
+      active.style.backgroundImage = `url('${urls[index]}')`;
+      active.classList.add("is-active");
+
+      if (urls.length === 1) return;
+
+      // Ensure CSS transition matches config (nice to keep in sync)
+      active.style.transitionDuration = CAROUSEL.crossfadeMs + "ms";
+      idle.style.transitionDuration = CAROUSEL.crossfadeMs + "ms";
+
+      setInterval(() => {
+        index = (index + 1) % urls.length;
+
+        idle.style.backgroundImage = `url('${urls[index]}')`;
+        idle.classList.add("is-active");
+        active.classList.remove("is-active");
+
+        // swap refs
+        const tmp = active;
+        active = idle;
+        idle = tmp;
+      }, CAROUSEL.intervalMs);
+    })();
+  </script>
 </body>
 </html>
